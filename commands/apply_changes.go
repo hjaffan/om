@@ -63,7 +63,6 @@ func (ac ApplyChanges) Execute(args []string) error {
 		if ac.Options.SkipUnchangedProducts {
 			return fmt.Errorf("product-name flag can not be passed with the skip-unchanged-products flag")
 		}
-<<<<<<< HEAD
 		info, err := ac.service.Info()
 		if err != nil {
 			return fmt.Errorf("could not retrieve info from targetted ops manager: %v", err)
@@ -71,27 +70,6 @@ func (ac ApplyChanges) Execute(args []string) error {
 		if !info.VersionAtLeast(2, 2) {
 			return fmt.Errorf("--product-name is only available with Ops Manager 2.2 or later: you are running %s", info.Version)
 		}
-		for _, product := range ac.Options.ProductNames {
-			changedProducts = append(changedProducts, product)
-		}
-	}
-
-	if ac.Options.SkipUnchangedProducts {
-		s, err := ac.pendingService.ListStagedPendingChanges()
-		if err != nil {
-			return fmt.Errorf("could not check for any pending changes installation: %s", err)
-		}
-=======
->>>>>>> ca306326808fde2d1d178a35a742a2a41f66bf6f
-		info, err := ac.service.Info()
-		if err != nil {
-			return fmt.Errorf("could not retrieve info from targetted ops manager: %v", err)
-		}
-		if !info.VersionAtLeast(2, 2) {
-			return fmt.Errorf("--product-name is only available with Ops Manager 2.2 or later: you are running %s", info.Version)
-		}
-<<<<<<< HEAD
-=======
 		for _, product := range ac.Options.ProductNames {
 			changedProducts = append(changedProducts, product)
 		}
@@ -109,7 +87,6 @@ func (ac ApplyChanges) Execute(args []string) error {
 		if !info.VersionAtLeast(2, 2) {
 			return fmt.Errorf("skip-unchanged-products is only available with Ops Manager 2.2 or later: you are running %s", info.Version)
 		}
->>>>>>> ca306326808fde2d1d178a35a742a2a41f66bf6f
 		for _, p := range s.ChangeList {
 			ac.logger.Printf("Found product: %s with action of: %s", p.Product, p.Action)
 			if p.Action != "unchanged" {
